@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
         /* Estilos personalizados para la estética ciberpunk */
         body {
@@ -22,12 +22,7 @@
             font-family: 'Orbitron', sans-serif;
         }
         .neon-text-pink {
-            text-shadow:
-                0 0 5px #ff00de,
-                0 0 10px #ff00de,
-                0 0 20px #ff00de,
-                0 0 40px #ff00de,
-                0 0 80px #ff00de;
+            text-shadow: 0 0 5px #ff00de, 0 0 8px #ff00de;
         }
         .neon-text-cyan {
             text-shadow:
@@ -71,12 +66,16 @@
             padding-bottom: 5px;
             display: inline-block;
         }
+        
         .social-icon {
             transition: all 0.3s ease;
+            animation: icon-glitch-anim 2s infinite linear alternate;
         }
+
         .social-icon:hover {
             color: #ff00de;
             transform: scale(1.1);
+            animation-play-state: paused; /* Pausa la animación en hover para que sea más fácil hacer clic */
         }
         .cyber-input {
             background-color: rgba(13, 2, 33, 0.8);
@@ -88,6 +87,87 @@
             border-color: #ff00de;
             box-shadow: 0 0 10px rgba(255, 0, 222, 0.5);
         }
+
+        /* Estilos para el efecto Glitch */
+        .glitch {
+            position: relative;
+            color: white;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00de;
+            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff;
+            animation: glitch-anim-2 1.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-skew {
+          0% { transform: skew(0deg); }
+          100% { transform: skew(0deg); }
+          50% { transform: skew(1deg); }
+        }
+
+        @keyframes glitch-anim-1 {
+          0% { clip-path: inset(10% 0 85% 0); }
+          20% { clip-path: inset(80% 0 5% 0); }
+          40% { clip-path: inset(20% 0 45% 0); }
+          60% { clip-path: inset(90% 0 2% 0); }
+          80% { clip-path: inset(40% 0 15% 0); }
+          100% { clip-path: inset(70% 0 20% 0); }
+        }
+
+        @keyframes glitch-anim-2 {
+          0% { clip-path: inset(85% 0 10% 0); }
+          25% { clip-path: inset(5% 0 80% 0); }
+          50% { clip-path: inset(45% 0 20% 0); }
+          75% { clip-path: inset(2% 0 90% 0); }
+          100% { clip-path: inset(20% 0 70% 0); }
+        }
+        
+        /* Animación de glitch para los iconos sociales */
+        @keyframes icon-glitch-anim {
+          0% { transform: translate(0, 0); }
+          10% { transform: translate(2px, -2px); }
+          20% { transform: translate(-2px, 2px); }
+          30% { transform: translate(0, 0); }
+          70% { transform: translate(0, 0); }
+          80% { transform: translate(-2px, -2px); }
+          90% { transform: translate(2px, -2px); }
+          100% { transform: translate(0, 0); }
+        }
+        
+        .footer-link {
+            color: #ff00de;
+            text-shadow: 0 0 5px #ff00de;
+            transition: all 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #00ffff;
+            text-shadow: 0 0 8px #00ffff;
+        }
+        
+        .data-card-list li::before {
+            content: '>>';
+            color: #ff00de;
+            margin-right: 0.5rem;
+        }
+
     </style>
 </head>
 <body class="antialiased">
@@ -97,33 +177,59 @@
         <!-- Header Section -->
         <header class="text-center mb-12 pt-8">
             <div class="inline-block profile-img-container rounded-full mb-6">
-                <img src="https://juone0450.github.io/Pilar0450/multimedia/pilar.jpeg" alt="Foto de Pilar" class="h-48 w-48 rounded-full object-cover"
+                <img src="https://fotografias.lasexta.com/clipping/cmsimages01/2016/08/11/2B0FF13B-7D38-4E53-9C51-6561C07F8672/97.jpg?crop=860,484,x0,y65&width=1600&height=900&optimize=high&format=webply" alt="Foto de perfil" class="h-48 w-48 rounded-full object-cover"
                 onerror="this.onerror=null;this.src='https://placehold.co/192x192/0d0221/ff00de?text=Pilar';">
             </div>
-            <h1 class="text-5xl md:text-7xl font-orbitron font-bold text-white neon-text-pink">PILAR SOSA</h1>
-            <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto neon-text-cyan">>> Conectando... Hola, soy Pilar. Estudio en la ORT y esta es mi terminal_web. <<</p>
+            <h1 class="text-5xl md:text-7xl font-orbitron font-black text-white glitch" data-text="Pilar Valentina">Pilar Valentina</h1>
+            <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto neon-text-cyan">>> Conectando... Hola, soy Pilar, alias pingüina Estudio en la Florencio Sanchez y esta es mi terminal_web. <<</p>
             <div class="flex justify-center space-x-6 mt-6">
-                <a href="https://www.instagram.com/pilu.sosaa/" target="_blank" class="text-cyan-300 text-4xl social-icon" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8s.01 2.444.048 3.297c.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372.527-.205.973-.478 1.417-.923.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 8 0zm0 1.44c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.231 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047zM8 4.9a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zM8 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4.5-5.3a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/>
+                <a href="https://www.youtube.com/@PilarTIKTOK_Roblox" target="_blank" class="text-cyan-300 text-4xl social-icon" aria-label="YouTube">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                        <path d="M8.051 1.999a.639.639 0 0 0-.622.613l-.893 5.356.124 1.514a.639.639 0 0 0 .622.613l2.18-.344a.639.639 0 0 0 .613-.622l.893-5.356-.124-1.514a.639.639 0 0 0-.613-.622l-2.18.344zm2.94 6.135l-1.668.278.894 5.356a.639.639 0 0 1-.613.622l-2.18-.344a.639.639 0 0 1-.622-.613l-.893-5.356.124-1.514a.639.639 0 0 1 .622-.613l2.18.344a.639.639 0 0 1 .613.622l-.894 5.356zM5.271 2.082a.639.639 0 0 1 .613-.622l2.18-.344a.639.639 0 0 1 .622.613l.893 5.356-.124 1.514a.639.639 0 0 1-.622.613l-2.18.344a.639.639 0 0 1-.613-.622L5.271 2.082z"/>
                     </svg>
                 </a>
-                <a href="https://www.tiktok.com/@pilu.sosaa" target="_blank" class="text-cyan-300 text-4xl social-icon" aria-label="TikTok">
+                <a href="https://www.tiktok.com/@piwi8929" target="_blank" class="text-cyan-300 text-4xl social-icon" aria-label="TikTok">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16">
                         <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z"/>
                     </svg>
                 </a>
-                <a href="https://www.youtube.com/@pilarsosa9915" target="_blank" class="text-cyan-300 text-4xl social-icon" aria-label="YouTube">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-                        <path d="M8.051 1.999a.639.639 0 0 0-.622.613l-.893 5.356.124 1.514a.639.639 0 0 0 .622.613l2.18-.344a.639.639 0 0 0 .613-.622l.893-5.356-.124-1.514a.639.639 0 0 0-.613-.622l-2.18.344zm2.94 6.135l-1.668.278.894 5.356a.639.639 0 0 1-.613.622l-2.18-.344a.639.639 0 0 1-.622-.613l-.893-5.356.124-1.514a.639.639 0 0 1 .622-.613l2.18.344a.639.639 0 0 1 .613.622l-.894 5.356zM5.271 2.082a.639.639 0 0 1 .613-.622l2.18-.344a.639.639 0 0 1 .622.613l.893 5.356-.124 1.514a.639.639 0 0 1-.622.613l-2.18.344a.639.639 0 0 1-.613-.622L5.271 2.082z"/>
+                <a href="https://www.google.com" target="_blank" class="text-cyan-300 text-4xl social-icon" aria-label="Google">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                      <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/>
                     </svg>
                 </a>
             </div>
         </header>
 
-        <!-- Likes/Dislikes Section -->
+        <!-- Main Content -->
         <main>
-            <!-- Cosas que me gustan -->
+            <!-- Data Intel Section -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-orbitron mb-6 text-center section-title neon-text-cyan">TRANSMISIÓN DE DATOS // Intel</h2>
+                <div class="max-w-3xl mx-auto cyber-card p-8 rounded-lg text-left">
+                    <p class="mb-4">Pilar, también conocida como <strong class="neon-text-pink font-bold">Pilar0450</strong>, es una jugadora profesional y creadora de contenido.</p>
+                    
+                    <h3 class="font-orbitron text-xl text-white neon-text-cyan mt-6 mb-2">>> Especialización: Gaming</h3>
+                    <ul class="list-none data-card-list space-y-2">
+                        <li><strong class="text-pink-400">Roblox:</strong> Dominio en <span class="text-white">"Rieles Muertos"</span>, <span class="text-white">"Dress to Impress"</span> y <span class="text-white">"MM2"</span>.</li>
+                        <li><strong class="text-pink-400">Otros Territorios:</strong> Incursiones frecuentes en <span class="text-white">Minecraft</span> y <span class="text-white">Skullgirls</span>.</li>
+                    </ul>
+
+                    <h3 class="font-orbitron text-xl text-white neon-text-cyan mt-6 mb-2">>> Pasiones Análogas</h3>
+                     <ul class="list-none data-card-list space-y-2">
+                        <li><strong class="text-pink-400">Frecuencias Musicales:</strong> Devota de <span class="text-white">Hatsune Miku</span>, el K-pop (con especial afinidad por <span class="text-white">TWICE</span> [bias: Mina] y <span class="text-white">BLACKPINK</span>), y la banda indie <span class="text-white">TV Girl</span>.</li>
+                        <li><strong class="text-pink-400">Creación Manual:</strong> Habilidad en manualidades diversas.</li>
+                    </ul>
+                </div>
+            </section>
+
+             <!-- Mis Amigas Section -->
+            <section class="mb-12 text-center">
+                 <h2 class="text-3xl font-orbitron mb-6 section-title neon-text-cyan">UNIDADES ALIADAS // Mis Amigas</h2>
+                 <p class="text-lg text-white glitch" data-text="Mi escuadrón: Luz, Emma, Maia, Guada.">Mi escuadrón: Luz, Emma, Maia, Guada.</p>
+            </section>
+
+            <!-- Likes -->
             <section class="mb-12">
                 <h2 class="text-3xl font-orbitron mb-6 section-title neon-text-cyan">TRANSMISIÓN POSITIVA // Likes</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -135,42 +241,42 @@
                         </div>
                     </div>
                     <div class="cyber-card rounded-lg overflow-hidden">
-                        <img src="https://juone0450.github.io/Pilar0450/multimedia/comer.jpeg" alt="Comiendo" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2a0b4d/c0c0c0?text=Comer';">
+                        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/27ae4087-713b-48ab-8558-57d83037be82/d5ty3d8-c228769a-bfcb-4277-a12f-56a56be233b6.png/v1/fill/w_1024,h_1032/el_plato_del_buen_comer_by_truepardox_d5ty3d8-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTAzMiIsInBhdGgiOiJcL2ZcLzI3YWU0MDg3LTcxM2ItNDhhYi04NTU4LTU3ZDgzMDM3YmU4MlwvZDV0eTNkOC1jMjI4NzY5YS1iZmNiLTQyNzctYTEyZi01NmE1NmJlMjMzYjYucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.M4kNnpjNQPVEHg4DbWEYrzBnCRd3EO44LKH_C8D1aFg" alt="Comiendo" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2a0b4d/c0c0c0?text=Comer';">
                         <div class="p-4">
                             <h3 class="font-orbitron text-xl text-white">Comer</h3>
                             <p class="mt-2 text-sm">Ingesta de combustible para la unidad biológica.</p>
                         </div>
                     </div>
                     <div class="cyber-card rounded-lg overflow-hidden">
-                        <img src="https://juone0450.github.io/Pilar0450/multimedia/patin.jpeg" alt="Patinando" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2a0b4d/c0c0c0?text=Patinar';">
+                        <img src="https://raw.githubusercontent.com/pilar0450/mi-perfil/main/jazz.png" alt="Bailando" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2a0b4d/c0c0c0?text=Bailar';">
                         <div class="p-4">
-                            <h3 class="font-orbitron text-xl text-white">Patinar</h3>
-                            <p class="mt-2 text-sm">Desplazamiento urbano a alta velocidad.</p>
+                            <h3 class="font-orbitron text-xl text-white">Bailar</h3>
+                            <p class="mt-2 text-sm">Ejecutando secuencias de movimiento rítmico.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Cosas que no me gustan -->
+            <!-- Dislikes -->
             <section class="mb-12">
                 <h2 class="text-3xl font-orbitron mb-6 section-title neon-text-cyan">ALERTA DE CORRUPCIÓN // Dislikes</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="cyber-card rounded-lg overflow-hidden">
-                        <img src="https://juone0450.github.io/Pilar0450/multimedia/matematica.jpeg" alt="Matemáticas" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2a0b4d/c0c0c0?text=Matematica';">
+                        <img src="https://www.gaceta.udg.mx/wp-content/uploads/2022/09/Captura-de-Pantalla-2022-09-26-a-las-9.58.54-696x456.png" alt="Matemáticas" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2a0b4d/c0c0c0?text=Matematica';">
                         <div class="p-4">
                             <h3 class="font-orbitron text-xl text-white">Matemática</h3>
                             <p class="mt-2 text-sm">Error de cálculo en la matriz de preferencias.</p>
                         </div>
                     </div>
                     <div class="cyber-card rounded-lg overflow-hidden">
-                        <img src="https://juone0450.github.io/Pilar0450/multimedia/bichos.jpeg" alt="Bichos" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2a0b4d/c0c0c0?text=Bichos';">
+                        <img src="https://fertinyect.com/wp-content/uploads/2023/06/Arana-roja-1536x1198.jpg" alt="Bichos" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2a0b4d/c0c0c0?text=Bichos';">
                         <div class="p-4">
                             <h3 class="font-orbitron text-xl text-white">Bichos</h3>
                             <p class="mt-2 text-sm">Soy una persona atrapada en una IA.</p>
                         </div>
                     </div>
                     <div class="cyber-card rounded-lg overflow-hidden">
-                        <img src="https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Anuncios Invasivos" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2a0b4d/c0c0c0?text=Ads';">
+                        <img src="https://www.infobae.com/resizer/v2/ETTYGNFSMBEP7FMT2ETQILTUUY.jpg?auth=83a30697b473f930e76a3a9299f66ccec07964335d8e110d341ce8ec92d181f8&smart=true&width=992&height=558&quality=85" alt="Anuncios Invasivos" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/2a0b4d/c0c0c0?text=Ads';">
                         <div class="p-4">
                             <h3 class="font-orbitron text-xl text-white">Anuncios Invasivos</h3>
                             <p class="mt-2 text-sm">Spam interrumpiendo la señal de datos.</p>
@@ -178,13 +284,6 @@
                     </div>
                 </div>
             </section>
-
-             <!-- Mis Amigas Section -->
-            <section class="mb-12 text-center">
-                 <h2 class="text-3xl font-orbitron mb-6 section-title neon-text-cyan">UNIDADES ALIADAS // Mis Amigas</h2>
-                 <p class="text-lg">Mi escuadrón: Tefi, Cande, Bianca, Guada y Valen.</p>
-            </section>
-
 
             <!-- Contact Form -->
             <section>
@@ -215,7 +314,7 @@
 
         <!-- Footer -->
         <footer class="text-center py-8 mt-12">
-            <p class="text-sm text-gray-500">&copy; 2025 // PILAR SOSA TERMINAL // Conexión finalizada.</p>
+            <p class="text-sm text-gray-500">&copy; 2025 // <a href="https://juone0450.github.io/Pilar0450/" target="_blank" class="footer-link">BY PILAR VALENTINA</a> // Realizado con la ayuda de Google IA PRO</p>
         </footer>
 
     </div>
